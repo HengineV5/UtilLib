@@ -11,6 +11,9 @@ on:
     branches:
       - "*"
 
+permissions:
+  contents: write
+
 jobs:
   dotnet:
     uses: HengineV5/.github/.github/workflows/dotnet-ci.yml@main
@@ -18,5 +21,4 @@ jobs:
       nuget-packageid: "Henke.UtilLib"
       test-step: true
     secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
