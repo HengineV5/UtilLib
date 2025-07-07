@@ -7,8 +7,17 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 
-		<!-- MinVer -->
+		<!-- MinVer settings -->
 		<MinVerTagPrefix>v</MinVerTagPrefix>
+		
+		<!-- NuGet -->
+		<PackageId>Henke.UtilLib</PackageId>
+		<Authors>Henrik9864</Authors>
+		<Company>Henke</Company>
+		<RepositoryUrl>https://github.com/henrik9864/UtilLib.git</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryType>git</RepositoryType>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
