@@ -17,3 +17,5 @@ jobs:
     with:
       nuget-packageid: "Henke.UtilLib"
       test-step: true
+    secrets:
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
