@@ -42,6 +42,13 @@ namespace UtilLib.Span
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void Free(int count)
+		{
+			span.Slice(idx - count).Clear();
+            idx -= count;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Remove(int idx)
 		{
 			span.Slice(idx + 1).TryCopyTo(span.Slice(idx));
