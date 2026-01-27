@@ -111,20 +111,6 @@ namespace UtilLib.Logging
 			logger.LogInformation("=== {name} Report ===", timeLogger.Name);
 			logger.LogInformation("Total Time: {time}ms", timeLogger.TotalElapsed.TotalMilliseconds);
 			logger.LogInformation("Entry Count: {count}", timeLogger.EntryCount);
-			logger.LogInformation("");
-
-			foreach (var entry in timeLogger.GetEntries())
-			{
-				var indent = new string(' ', entry.Depth * 2);
-				logger.LogInformation($"{indent}{{name}}: {{duration}}ms (at {{timeAt}}ms)", entry.Name, entry.Duration.TotalMilliseconds, entry.TotalTimeAtEnd.TotalMilliseconds);
-			}
-		}
-
-		public static void WriteReport2(this TimeLogger timeLogger, ILogger logger)
-		{
-			logger.LogInformation("=== {name} Report ===", timeLogger.Name);
-			logger.LogInformation("Total Time: {time}ms", timeLogger.TotalElapsed.TotalMilliseconds);
-			logger.LogInformation("Entry Count: {count}", timeLogger.EntryCount);
 			logger.LogInformation("=== {text} ===", "Breakdown");
 
 			var entries = timeLogger.GetEntries();
