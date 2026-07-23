@@ -5,9 +5,12 @@ using System.Runtime.InteropServices;
 
 namespace UtilLib.Memory
 {
+
 	[InlineArray(2)]
 	public struct FixedBuffer2<T>
 	{
+		public const int Length = 2;
+
 		private T _element0;
 
 		[EditorBrowsable(EditorBrowsableState.Never)]
@@ -20,6 +23,8 @@ namespace UtilLib.Memory
 	[InlineArray(4)]
 	public struct FixedBuffer4<T>
 	{
+		public const int Length = 4;
+
 		private T _element0;
 
 		[EditorBrowsable(EditorBrowsableState.Never)]
@@ -32,6 +37,8 @@ namespace UtilLib.Memory
 	[InlineArray(8)]
 	public struct FixedBuffer8<T>
 	{
+		public const int Length = 8;
+
 		private T _element0;
 
 		[EditorBrowsable(EditorBrowsableState.Never)]
@@ -44,6 +51,8 @@ namespace UtilLib.Memory
 	[InlineArray(16)]
 	public struct FixedBuffer16<T>
 	{
+		public const int Length = 16;
+
 		private T _element0;
 
 		[EditorBrowsable(EditorBrowsableState.Never)]
@@ -56,6 +65,8 @@ namespace UtilLib.Memory
 	[InlineArray(32)]
 	public struct FixedBuffer32<T>
 	{
+		public const int Length = 32;
+
 		private T _element0;
 
 		[EditorBrowsable(EditorBrowsableState.Never)]
@@ -68,6 +79,8 @@ namespace UtilLib.Memory
 	[InlineArray(64)]
 	public struct FixedBuffer64<T>
 	{
+		public const int Length = 64;
+
 		private T _element0;
 
 		[EditorBrowsable(EditorBrowsableState.Never)]

@@ -1,27 +1,31 @@
 ﻿using UtilLib.Extensions;
+using Node = UtilLib.Span.SpanHierarchy.Node;
 
 namespace UtilLib.Span
 {
-	public ref struct SpanHierarchy<T>
+	public struct SpanHierarchy
 	{
 		public struct Node
 		{
 			public int parentIndex;
 			public Range children;
 		}
+	}
 
+	public ref struct SpanHierarchy<T>
+	{
 		Span<T> data;
 		Span<Node> hierarchy;
-		int count;
+		ref int count;
 
-		public SpanHierarchy(Span<T> data, Span<Node> nodes, int count)
+		public SpanHierarchy(Span<T> data, Span<Node> nodes, ref int count)
 		{
 			if (data.Length != nodes.Length)
 				throw new ArgumentException("Data and nodes must have the same length");
 
 			this.data = data;
 			this.hierarchy = nodes;
-			this.count = count;
+			this.count = ref count;
 		}
 
 		public int SetRoot(in T value)
@@ -35,6 +39,11 @@ namespace UtilLib.Span
 			data[0] = value;
 			count++;
 
+			return 0;
+		}
+
+		public int GetRoot()
+		{
 			return 0;
 		}
 
@@ -57,7 +66,7 @@ namespace UtilLib.Span
 			hierarchy[childIndex] = new Node
 			{
 				parentIndex = parentIndex,
-				children = default
+				children = new(parentIndex, parentIndex)
 			};
 
 			data[childIndex] = value;
@@ -66,6 +75,19 @@ namespace UtilLib.Span
 			count++;
 
 			return childIndex;
+		}
+
+		public int CreateOrphan(in T value)
+		{
+			int nodeIndex = count;
+			hierarchy[nodeIndex] = new Node
+			{
+				parentIndex = -1,
+				children = new(nodeIndex, nodeIndex)
+			};
+			data[nodeIndex] = value;
+			count++;
+			return nodeIndex;
 		}
 
 		public void DeleteNode(int nodeIndex)
@@ -101,6 +123,12 @@ namespace UtilLib.Span
 		public Range GetChildren(int parentIndex)
 		{
 			return hierarchy[parentIndex].children;
+		}
+
+		public Range GetChildrenAndSelf(int parentIndex)
+		{
+			ref var parentNode = ref hierarchy[parentIndex];
+			return new Range(parentIndex, parentNode.children.End.Value);
 		}
 
 		public Span<T> GetChildrenValues(int parentIndex)

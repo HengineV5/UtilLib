@@ -2,6 +2,7 @@
 
 namespace UtilLib.Span
 {
+	// Not the collection lol
 	public unsafe ref struct SpanStack
 	{
 		Span<byte> pool;

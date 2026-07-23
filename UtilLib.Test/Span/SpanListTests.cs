@@ -56,7 +56,8 @@ namespace UtilLib.Test
 		[Test]
 		public void SpanHierarchyTest()
 		{
-			SpanHierarchy<int> hierarchy = new(stackalloc int[10], stackalloc SpanHierarchy<int>.Node[10], 0);
+			int c = 0;
+			SpanHierarchy<int> hierarchy = new(stackalloc int[10], stackalloc SpanHierarchy.Node[10], ref c);
 
 			int rootIndex = hierarchy.SetRoot(1);
 			Assert.That(rootIndex == 0);
@@ -111,7 +112,8 @@ namespace UtilLib.Test
 		[Test]
 		public void SpanHierarchyDeleteTest()
 		{
-			SpanHierarchy<int> hierarchy = new(stackalloc int[10], stackalloc SpanHierarchy<int>.Node[10], 0);
+			int c = 0;
+			SpanHierarchy<int> hierarchy = new(stackalloc int[10], stackalloc SpanHierarchy.Node[10], ref c);
 
 			int rootIndex = hierarchy.SetRoot(1);
 			int child1Index = hierarchy.CreateChild(rootIndex, 2);
@@ -140,7 +142,8 @@ namespace UtilLib.Test
 		[Test]
 		public void SpanHierarchyNavigationTest()
 		{
-			SpanHierarchy<int> hierarchy = new(stackalloc int[10], stackalloc SpanHierarchy<int>.Node[10], 0);
+			int c = 0;
+			SpanHierarchy<int> hierarchy = new(stackalloc int[10], stackalloc SpanHierarchy.Node[10], ref c);
 
 			int rootIndex = hierarchy.SetRoot(1);
 			int child1Index = hierarchy.CreateChild(rootIndex, 2);
